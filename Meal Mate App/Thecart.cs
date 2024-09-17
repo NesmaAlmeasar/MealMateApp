@@ -54,7 +54,7 @@ namespace Meal_Mate_App
                                 JOIN 
                                     Meals m ON ci.MealID = m.MealID
                                 WHERE 
-                                    c.UserID = " + UserID + " AND c.state='قيد الانتظار'";
+                                    c.UserID = " + UserID + " AND c.Creatstate= 0";
 
                     SqlCommand command = new SqlCommand(query, conn);
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
@@ -77,7 +77,7 @@ namespace Meal_Mate_App
             {
                 int UserID = Convert.ToInt32(_form1.textBox_UserID.Text);
 
-                string checkCartQuery = "SELECT CartID FROM Carts WHERE UserID = @UserID AND state = 'قيد الانتظار'";
+                string checkCartQuery = "SELECT CartID FROM Carts WHERE UserID = @UserID AND Creatstate = 0 ";
                 SqlCommand checkCartCommand = new SqlCommand(checkCartQuery, conn);
                 checkCartCommand.Parameters.AddWithValue("@UserID", UserID);
 
@@ -119,16 +119,20 @@ namespace Meal_Mate_App
 
                 // تأكد من وجود سلة للمستخدم
                 conn.Open();
-                string getCartIdQuery = @"SELECT CartID FROM Carts WHERE UserID = @UserID AND state = 'قيد الانتظار'";
+                string getCartIdQuery = @"SELECT CartID FROM Carts WHERE UserID = @UserID AND Creatstate = 0";
                 SqlCommand getCartIdCommand = new SqlCommand(getCartIdQuery, conn);
                 getCartIdCommand.Parameters.AddWithValue("@UserID", UserID);
-                object result = getCartIdCommand.ExecuteScalar();
-                if (result != null)
+                SqlDataAdapter adapter = new SqlDataAdapter(getCartIdCommand);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                if (dataTable.Rows.Count > 0)
                 {
-                    int cartId = Convert.ToInt32(result);
-                    
-                    // تحديث حالة السلة إلى "قيد التنفيذ"
-                    string updateCartStateQuery = @"UPDATE Carts SET state = 'قيد التنفيذ' WHERE CartID = @CartID";
+                   int  cartId = (int)dataTable.Rows[0]["CartID"];
+
+
+                
+                // تحديث حالة السلة إلى "قيد التنفيذ"
+                string updateCartStateQuery = @"UPDATE Carts SET Creatstate = 1 WHERE CartID = @CartID";
                     SqlCommand updateCartStateCommand = new SqlCommand(updateCartStateQuery, conn);
                     updateCartStateCommand.Parameters.AddWithValue("@CartID", cartId);
                     updateCartStateCommand.ExecuteNonQuery();

@@ -213,7 +213,7 @@ namespace Meal_Mate_App
                     // تحقق  إذا كانت هناك سلة قيد الانتظار للمستخدماو انشاء سلة 
 
                     // تحقق  إذا كانت هناك سلة قيد الانتظار للمستخدم
-                    string checkCartQuery = "SELECT CartID FROM Carts WHERE UserID = @UserID AND state = 'قيد الانتظار'";
+                    string checkCartQuery = "SELECT CartID FROM Carts WHERE UserID = @UserID AND Creatstate = 0";
                     SqlCommand checkCartCommand = new SqlCommand(checkCartQuery, conn);
                     checkCartCommand.Parameters.AddWithValue("@UserID", UserID);
 
@@ -232,7 +232,7 @@ namespace Meal_Mate_App
                         
                             int CartID = (int)(DateTime.Now.Ticks % int.MaxValue);
                             // إنشاء سلة جديدة
-                            string createCartQuery = "INSERT INTO Carts (CartID, UserID, state, CreatedAt) OUTPUT INSERTED.CartID VALUES (@CartID ,@UserID, 'قيد الانتظار', @CreatedAt)";
+                            string createCartQuery = "INSERT INTO Carts (CartID, UserID, Creatstate, CreatedAt) OUTPUT INSERTED.CartID VALUES (@CartID ,@UserID, 0, @CreatedAt)";
                             SqlCommand createCartCommand = new SqlCommand(createCartQuery, conn);
                             createCartCommand.Parameters.AddWithValue("@UserID", UserID);
                             createCartCommand.Parameters.AddWithValue("@CartID", CartID);

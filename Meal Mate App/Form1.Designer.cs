@@ -37,6 +37,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.closebutton = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +45,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(83, 64);
+            this.button2.Location = new System.Drawing.Point(83, 84);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(267, 71);
@@ -57,6 +58,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.panel2.Controls.Add(this.closebutton);
             this.panel2.Controls.Add(this.labelFirstName);
             this.panel2.Controls.Add(this.textBox_UserID);
             this.panel2.Controls.Add(this.button3);
@@ -82,7 +84,7 @@
             // textBox_UserID
             // 
             this.textBox_UserID.Enabled = false;
-            this.textBox_UserID.Location = new System.Drawing.Point(216, 12);
+            this.textBox_UserID.Location = new System.Drawing.Point(163, 37);
             this.textBox_UserID.Name = "textBox_UserID";
             this.textBox_UserID.Size = new System.Drawing.Size(100, 33);
             this.textBox_UserID.TabIndex = 10;
@@ -146,6 +148,18 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Visible = false;
             // 
+            // closebutton
+            // 
+            this.closebutton.BackColor = System.Drawing.Color.IndianRed;
+            this.closebutton.Location = new System.Drawing.Point(269, 11);
+            this.closebutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.closebutton.Name = "closebutton";
+            this.closebutton.Size = new System.Drawing.Size(47, 48);
+            this.closebutton.TabIndex = 16;
+            this.closebutton.Text = "x";
+            this.closebutton.UseVisualStyleBackColor = false;
+            this.closebutton.Click += new System.EventHandler(this.closebutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -154,7 +168,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -178,6 +192,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button closebutton;
     }
 }
 

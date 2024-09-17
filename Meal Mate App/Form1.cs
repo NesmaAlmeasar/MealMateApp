@@ -105,5 +105,14 @@ namespace Meal_Mate_App
         {
 
         }
+
+        private void closebutton_Click(object sender, EventArgs e)
+        {
+            DialogResult closeresult = MessageBox.Show("هل فعلا تريد الخروج ", " تأكيد الخروج ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (closeresult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
